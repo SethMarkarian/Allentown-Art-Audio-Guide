@@ -1,0 +1,102 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block content %}
+        <div class="body-container">
+            <!-- HEADER w/ IMAGE -->
+            <div class="header-container">
+                <img class="logo my-2" src={% static "images/logo.jpg" %}>
+            </div>
+
+            <div class="content-container">
+                <!-- EXHIBIT CONATINER -->
+                <div class="exhibit-container">
+                    {% if tutorial %}
+                            <img class="contain" src={% static "images/tutorial.png" %}>
+                            <h4 class="my-5 text-center">
+                                Enter this number to hear more about the exhibit!
+                            </h4>
+                    {% else %}
+                        <!-- IF EXHIBIT IS FOUND -->
+                        {% if exhibit %}
+
+                            <!-- TITLE -->
+                            <h2>{{exhibit.title}}</h2>
+                            <p class="text-muted">
+                                {% if exhibit.artist %}{{exhibit.artist}}{% endif %}{% if exhibit.date %}, {{exhibit.date}}{% endif %} 
+                            </p>
+
+                            <!-- IMAGE -->
+                            {% if exhibit.image.url != "/media/default.jpg" %}
+                                <img class="contain my-2" src="{{exhibit.image.url}}">
+                            {% endif %}
+
+                            <!-- VIDEO -->
+                            {% if exhibit.video.url != "/media/default.mp4" %}
+                                <video class="contain my-2" preload="auto" controls src="{{exhibit.video.url}}">
+                                </video>
+                            {% endif %}
+
+                            <!-- AUDIO -->
+                            {% if exhibit.audio.url != "/media/default.mp3" %}
+                                <audio class="w-100 my-2" controls controlslist="nodownload">
+                                    <source src="{{exhibit.audio.url}}" type="audio/mpeg">
+                                </audio>
+                            {% endif %}
+
+                            <!-- DESCRIPTION -->
+                            {% if exhibit.description != "" %}
+                                <p class="indent my-2">{{exhibit.description}}</p>
+                            {% endif %}
+
+                            {% if exhibit.additional_lookup_number != null %}
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <!-- Hidden input is used to identify when the user has clicked next -->
+                                    <input type="hidden" name="next" value="next">
+                                    <div class="text-center">
+                                        <button class="btn next" type="submit">More</button>
+                                    </div>
+                                </form>
+                        {% endif %}
+
+                        <!-- IF EXHIBIT IS NOT FOUND -->
+                        {% else %}
+                            <div class="alert alert-danger text-center">
+                                Sorry, we don't have any records of an object matching that lookup number...
+                            </div>
+                        {% endif %} 
+
+                    {% endif %}
+                </div>
+
+                <div class="mt-2">
+                    <!-- SEARCH BAR/SUBMIT BUTTON CONTAINER -->
+                    <div class="search-container">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="input-group justify-center">
+                                <input class="form-input" name="lookup_num" pattern="\d*" placeholder="Object #" type="number" required>  
+                                <button class="form-submit" type="submit">Go</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- FOOTER -->
+                    <footer class="footer">
+                        <div class="text-muted">© 2020 Copyright</div><br>
+                        <div class="text-light">Designed in colaboration with Lafayette College</div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <!-- END OF  BODY CONTAINER-->
+
+
+        <!-- Script for accomodating iOS navigation bar -->
+        <script>
+            // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+            let vh = window.innerHeight * 0.01;
+            // Then we set the value in the --vh custom property to the root of the document
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        </script>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+[0;1;32m●[0m gunicorn.service - gunicorn daemon
+   Loaded: loaded (/etc/systemd/system/gunicorn.service; enabled; vendor preset: enabled)
+   Active: [0;1;32mactive (running)[0m since Mon 2020-04-13 20:45:18 EDT; 4 days ago
+ Main PID: 17379 (gunicorn)
+    Tasks: 4 (limit: 4915)
+   CGroup: /system.slice/gunicorn.service
+           ├─17379 /home/test/testenv/bin/python /home/test/testenv/bin/gunicorn --access-logfile - --workers 3 --bind unix/run/gunicorn.sock django_project.wsgi:application
+           ├─17382 /home/test/testenv/bin/python /home/test/testenv/bin/gunicorn --access-logfile - --workers 3 --bind unix/run/gunicorn.sock django_project.wsgi:application
+           ├─17383 /home/test/testenv/bin/python /home/test/testenv/bin/gunicorn --access-logfile - --workers 3 --bind unix/run/gunicorn.sock django_project.wsgi:application
+           └─17384 /home/test/testenv/bin/python /home/test/testenv/bin/gunicorn --access-logfile - --workers 3 --bind unix/run/gunicorn.sock django_project.wsgi:application
+
+Apr 16 14:31:13 django-server gunicorn[17379]:  - - [16/Apr/2020:18:31:13 +0000] "GET / HTTP/1.0" 200 1503 "-" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"
+Apr 16 16:00:47 django-server gunicorn[17379]:  - - [16/Apr/2020:20:00:47 +0000] "GET / HTTP/1.0" 200 1503 "-" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+Apr 16 16:17:52 django-server gunicorn[17379]:  - - [16/Apr/2020:20:17:52 +0000] "GET / HTTP/1.0" 200 1503 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36"
+Apr 16 16:17:55 django-server gunicorn[17379]:  - - [16/Apr/2020:20:17:55 +0000] "POST / HTTP/1.0" 302 0 "http://139.147.9.184/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36"
+Apr 16 16:17:55 django-server gunicorn[17379]:  - - [16/Apr/2020:20:17:55 +0000] "GET /home/ HTTP/1.0" 200 2575 "http://139.147.9.184/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36"
+Apr 16 16:17:59 django-server gunicorn[17379]:  - - [16/Apr/2020:20:17:59 +0000] "POST /home/ HTTP/1.0" 200 2594 "http://139.147.9.184/home/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36"
+Apr 16 16:18:06 django-server gunicorn[17379]:  - - [16/Apr/2020:20:18:06 +0000] "GET /home/ HTTP/1.0" 200 2575 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36"
+Apr 16 16:18:07 django-server gunicorn[17379]:  - - [16/Apr/2020:20:18:07 +0000] "GET /home/ HTTP/1.0" 200 2575 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36"
+Apr 16 16:18:19 django-server gunicorn[17379]:  - - [16/Apr/2020:20:18:19 +0000] "GET /home/ HTTP/1.0" 200 2575 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36"
+Apr 18 10:12:29 django-server systemd[1]: [0;1;39m[0;1;31m[0;1;39mgunicorn.service: Current command vanished from the unit file, execution of the command list won't be resumed.[0m

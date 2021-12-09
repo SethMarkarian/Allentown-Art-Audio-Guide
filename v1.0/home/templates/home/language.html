@@ -1,0 +1,21 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block content %}
+    <h1 class = "text-center">Select Language</h1>
+    <div class = "text-center">
+        <img width="180" height="180" src = {% static "images/english.png" %}>
+        <form method = "POST">
+            {% csrf_token %}
+            <input type = "hidden" name = "language" value = "english">
+            <button type = "submit" class = "btn btn-primary">English</button>
+        </form>
+        <br>
+        <img width="180" height="180"src = {% static "images/spanish.png" %}>
+        <form method = "POST">
+            {% csrf_token %}
+            <input type = "hidden" name = "language" value = "spanish">
+            <button type = "submit" class = "btn btn-primary">Spanish</button>
+        </form>
+        
+    </div>
+{% endblock %}
